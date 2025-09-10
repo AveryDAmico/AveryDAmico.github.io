@@ -5,6 +5,10 @@ body {
 canvas {
   background-color: lightblue;
   margin: 20px;
+  background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFY7DVz5leTiOycteQvMCiHtKslUlHGO7ymymzz0K0-Vk9vyCe6lTgywJOXE6bm3imQ5MJ7UUlZT3p1M2-jQ3avQ4yIS0-efLMedUtlu-7m_ICrDxPKxpvgjdT-HUrKTfFsiwyA11J2pjeygPDMqdMPLIcXrQe6GSU_qNOE1XEJEuiVWg1SgbZcFjIVZ5y/s800/california-scrapyard-1970s-1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 img {
