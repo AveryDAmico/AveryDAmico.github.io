@@ -35,22 +35,23 @@ $(function () {
     createPlatform(150,375,150,50,'grey');
     createPlatform(400,300,100,50,'white');
     createPlatform(675,425,10,50,'brown');
-    createPlatform(775,300,10,25,'brown');
+    createPlatform(775,300,10,25,'brown',750,800,1);
     createPlatform(1000,600,100,50,'darkblue');
     createPlatform(900,475,50,25,'white');
     createPlatform(1100,400,50,50,'white');
-
+    createPlatform(1200,300,50,10,'grey');
+    createPlatform(850,400,50,10,'grey');
 
 
     // TODO 3 - Create Collectables createCollectable('type',x,y,gravity,bounce,minX,maxX,speed);
     createCollectable('bolts',200,100);
-    createCollectable('sheet',850,150);
-    createCollectable('piston',1200,250);
+    createCollectable('sheet',850,100,1,1);
+    createCollectable('piston',1200,200,1,1);
     
     // TODO 4 - Create Cannons createCannon('side',position along wall,delay,projectile width,projectile height);
     createCannon('top',400,2500);
-    createCannon('top',1000,2500);
-    createCannon('right',575,2500)
+    createCannon('top',925,2500);
+    createCannon('right',600,2500);
 
     
     
