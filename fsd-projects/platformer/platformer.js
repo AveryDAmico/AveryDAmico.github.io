@@ -45,7 +45,7 @@ $(function () {
     createPlatform(100,0,10,400,'grey');
 
     // TODO 3 - Create Collectables createCollectable('type',x,y,gravity,bounce,minX,maxX,speed);
-    createCollectable('bolts',200,100);
+    createCollectable('bolts',200,100,0,0,125,300,3);
     createCollectable('sheet',850,100,1,1);
     createCollectable('piston',1200,200,1,1);
     
