@@ -27,7 +27,7 @@ $(function () {
     //////////////////////////////////
 
     // TODO 1 - Enable the Grid
-    //toggleGrid();
+    toggleGrid();
 
     // TODO 2 - Create Platforms (createPlatform(x,y,width,height,'color',minX,maxX,speed,))
     createPlatform(200,600,300,50,'white');
@@ -37,11 +37,12 @@ $(function () {
     createPlatform(675,425,10,50,'brown');
     createPlatform(775,300,10,25,'brown',750,800,1);
     createPlatform(1000,600,100,50,'darkblue');
-    createPlatform(900,475,50,25,'white');
+    createPlatform(925,475,50,25,'white');
     createPlatform(1100,400,50,50,'white');
     createPlatform(1200,300,50,10,'grey');
     createPlatform(850,400,50,10,'grey');
-
+    createPlatform(900,100,10,300,'grey');
+    createPlatform(100,0,10,400,'grey');
 
     // TODO 3 - Create Collectables createCollectable('type',x,y,gravity,bounce,minX,maxX,speed);
     createCollectable('bolts',200,100);
