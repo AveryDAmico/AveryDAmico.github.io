@@ -53,8 +53,6 @@ $(function () {
     createCannon('top',400,2500);
     createCannon('top',925,2500);
     createCannon('right',600,2500);
-
-    
     
     //////////////////////////////////
     // ONLY CHANGE ABOVE THIS POINT //
