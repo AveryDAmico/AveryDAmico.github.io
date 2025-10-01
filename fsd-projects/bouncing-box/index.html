@@ -22,6 +22,7 @@
 
       .board {
         height: 100vh;
+        background-color: black;
       }
     </style>
     <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -43,10 +44,15 @@
         var box = jQuery(".box"); // reference to the HTML .box element
         var board = jQuery(".board"); // reference to the HTML .board element
         var boardWidth = board.width(); // the maximum X-Coordinate of the screen
+        var boardHeight = jQuery(window).height();
 
         // update the boardWidth variable when the window is resized
         jQuery(window).on("resize", function () {
           boardWidth = board.width();
+        });
+        
+        jQuery(window).on("resize", function () {
+          boardHeight = jQuery(window).height();
         });
 
         // Every 50 milliseconds, call the update Function (see below)
@@ -56,8 +62,9 @@
         box.on("click", handleBoxClick);
 
         // moves the Box to a new position on the screen along the X-Axis
-        function moveBoxTo(newPositionX) {
+        function moveBoxTo(newPositionX,newPositionY) {
           box.css("left", newPositionX);
+          box.css("top", newPositionY);
         }
 
         // changes the text displayed on the Box
@@ -72,7 +79,9 @@
         // TODO 2 - Variable declarations
         var positionX = 0;
         var points = 0;
-        var speed = 10;
+        var speedX = 10;
+        var positionY=0;
+        var speedY=10;
 
         /**
          * This Function will be called 20 times/second.
@@ -80,13 +89,20 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-          moveBoxTo(positionX); 
-          positionX += speed;
+          moveBoxTo(positionX,positionY); 
+          positionX += speedX;
+          positionY+=speedY;
           if (positionX>=boardWidth-70) {
-            speed*=-1
+            speedX*=-1
           }
           if (positionX<=0) {
-            speed*=-1
+            speedX*=-1
+          }
+          if (positionY>=boardHeight-70) {
+            speedY*=-1
+          }
+          if (positionY<=0) {
+            speedY*=-1
           }
         }
 
@@ -99,9 +115,11 @@
          */
         function handleBoxClick() {
           positionX = 0
+          positionY=0
           points++
           changeBoxText(points)
-          speed = points*3+10
+          speedX = points*3+10
+          speedY=points*3+10
 
 
         }
