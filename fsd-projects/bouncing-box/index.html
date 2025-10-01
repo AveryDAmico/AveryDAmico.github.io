@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" type="image/x-icon" href="/images/Scrap-Handling-Magnet-removebg-preview.png">
     <meta charset="utf-8" />
     <title>Bouncing Box</title>
     <script src="jquery.min.js"></script>
@@ -69,10 +70,9 @@
         //////////////////////////////////////////////////////////////////
 
         // TODO 2 - Variable declarations
-
-
-
-
+        var positionX = 0;
+        var points = 0;
+        var speed = 10;
 
         /**
          * This Function will be called 20 times/second.
@@ -80,10 +80,14 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-
-        
-
-          
+          moveBoxTo(positionX); 
+          positionX += speed;
+          if (positionX>=boardWidth-70) {
+            speed*=-1
+          }
+          if (positionX<=0) {
+            speed*=-1
+          }
         }
 
         /**
@@ -94,8 +98,10 @@
          * - move the box to the left side of the screen.
          */
         function handleBoxClick() {
-
-
+          positionX = 0
+          points++
+          changeBoxText(points)
+          speed = points*3+10
 
 
         }
