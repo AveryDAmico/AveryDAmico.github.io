@@ -26,6 +26,10 @@
       .board {
         height: 100vh;
       }
+      .lose-flash {
+        background-color: #ff3333 !important;
+        transition: background-color 0.2s;
+      }
       @keyframes colorCycle {
         0% { background-color: #ff0000; } /* Red */
         25% { background-color: #ffff00; } /* Yellow */
@@ -69,6 +73,7 @@
 
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
+        board.on("click", handleBoardClick);
 
         // moves the Box to a new position on the screen along the X-Axis
         function moveBoxTo(newPositionX,newPositionY) {
@@ -138,7 +143,20 @@
           if (speedY<.5) {speedY=(points*(Math.random()+1)+speedYBase);}
           else {speedY=(points*(Math.random()+1)+speedYBase)*-1;}
         }
-        
+        function handleBoardClick(){
+          points-=1
+          if (points<=-10){
+            positionX=0;
+            positionY=0;
+            points=0;
+            speedX=5;
+            speedY=3;
+            // Flash the board background
+            board.addClass("lose-flash");
+            setTimeout(function() {board.removeClass("lose-flash");}, 400); // 400ms flash
+          }
+          changeBoxText(points)
+        }
       })();
     </script>
   </body>
