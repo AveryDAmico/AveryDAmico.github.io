@@ -118,7 +118,7 @@
          * - increase the speed
          * - move the box to the left side of the screen.
          */
-        function handleBoxClick() {
+        function handleBoxClick(){
           points++
           changeBoxText(points)
           newXValues()
@@ -127,15 +127,13 @@
         function newXValues(){
           positionX = Math.random() * boardWidth;
           if (positionX>=box.width()) {positionX-=box.width();}
-          
           speedX=Math.random()
           if (speedX<.5) {speedX=(points*(Math.random()+1)+speedXBase)();}
           else {speedX=(points*(Math.random()+1)+speedXBase)*-1;}
         }
-        function newYValues() {
+        function newYValues(){
           positionY = Math.random() * boardHeight;
           if (positionY>=box.height()) {positionY-=box.height();}
- 
           speedY=Math.random()
           if (speedY<.5) {speedY=(points*(Math.random()+1)+speedYBase);}
           else {speedY=(points*(Math.random()+1)+speedYBase)*-1;}
