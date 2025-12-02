@@ -9,7 +9,7 @@ var init = function (window) {
     app = opspark.makeApp(world.makeRules()),
     canvas = app.canvas,
     view = app.view,
-    fps = draw.fps("#000");
+    fps = draw.fps("#FFF");
 
   var space,
     rules,
@@ -21,7 +21,7 @@ var init = function (window) {
     playerManager,
     particleManager;
 
-  var debugHalleHitZones = false;
+  var debugHalleHitZones = true;
 
   space = app.space;
   (rules = app.rules),
