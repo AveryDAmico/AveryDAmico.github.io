@@ -32,21 +32,24 @@ var runLevels = function (window) {
       obstacleImage.regY = obstacleImage.image.height / 2;
       obstacleImage.x=0
       obstacleImage.y=0
+      sawBladeHitZone.rotationalVelocity=-1
     }
     createSawblade(500,250);
     createSawblade(600,300);
     createSawblade(700,225);
+    
     function createEnemy(x,y) {
-  // all code from TODO 11 and 12
       var enemy = game.createGameItem("enemy", 25);
-      var redSquare = draw.rect(50, 50, "red");
-      redSquare.x = -25;
-      redSquare.y = -25;
-      enemy.addChild(redSquare);
+      var enemyImage = draw.bitmap("img/space-invaders-red.jpg");
+      enemyImage.regX = enemyImage.image.width / 2;
+      enemyImage.regY = enemyImage.image.height / 2;
+      enemyImage.x=0
+      enemyImage.y=0
+      enemyImage.scaleX=enemyImage.scaleY=50/enemyImage.image.height;
+      enemy.addChild(enemyImage);
       enemy.x = x;
       enemy.y = groundY - y;
       enemy.velocityX = -1
-      enemy.rotationalVelocity=-1
       game.addGameItem(enemy);
       enemy.onPlayerCollision = function () {};
       enemy.onProjectileCollision = function () {
@@ -58,6 +61,30 @@ var runLevels = function (window) {
     createEnemy(400,20)
     createEnemy(600,70)
 
+    // all code from TODO 11 and 12
+    function createReward(x,y){
+      var reward=game.createGameItem("enemy",25)
+      var rewardImage=draw.bitmap("img/malwarebytes-logo.png")
+      rewardImage.regX = rewardImage.image.width / 2;
+      rewardImage.regY = rewardImage.image.height / 2;
+      rewardImage.x=0
+      rewardImage.y=0
+      rewardImage.scaleX=rewardImage.scaleY=50/rewardImage.image.height;
+      reward.addChild(rewardImage);
+      reward.x = x;
+      reward.y = groundY - y;
+      reward.velocityX = -1
+      game.addGameItem(reward);
+      reward.onPlayerCollision = function () {
+        game.increaseScore(100)
+        reward.shrink();
+      };
+      reward.onProjectileCollision = function () {
+        game.increaseScore(100);
+        reward.fadeOut();
+      };
+    }
+    createReward(700,30)
 
     function startLevel() {
       // TODO 13 goes below here

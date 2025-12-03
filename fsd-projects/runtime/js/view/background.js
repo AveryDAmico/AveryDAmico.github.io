@@ -36,6 +36,11 @@ var background = function (window) {
         function render() {
             background.removeAllChildren();
 
+            // refresh dynamic canvas/ground values (called on resize)
+            canvasWidth = app.canvas.width;
+            canvasHeight = app.canvas.height;
+            groundY = ground.y;
+
             // TODO 1:
             // this currently fills the background with an obnoxious yellow;
             // you should modify both the height and color to suit your game
