@@ -19,43 +19,43 @@ var runLevels = function (window) {
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
     
-    function createSawblade(x,y){
+    function createSawblade(x,y,speed,damage){
       var hitZoneSize = 25;
-      var damageFromObstacle = 10;
-      var obstacleImage = draw.bitmap("img/sawblade.png");
-      var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+      var sawBladeHitZone = game.createObstacle(hitZoneSize, damage);
       sawBladeHitZone.x = x;
       sawBladeHitZone.y = groundY- y;
+      sawBladeHitZone.velocityX = -speed
       game.addGameItem(sawBladeHitZone);
-      sawBladeHitZone.addChild(obstacleImage);
+      var obstacleImage = draw.bitmap("img/sawblade.png");
       obstacleImage.regX = obstacleImage.image.width / 2;
       obstacleImage.regY = obstacleImage.image.height / 2;
       obstacleImage.x=0;
       obstacleImage.y=0;
-      sawBladeHitZone.rotationalVelocity=-1;
+      sawBladeHitZone.addChild(obstacleImage);
+      sawBladeHitZone.rotationalVelocity=1;
     }
     // createSawblade(500,10);
     // createSawblade(600,20);
     // createSawblade(700,100);
     
-    function createEnemy(x,y,speed) {
+    function createEnemy(x,y,speed,damage,score) {
+      var enemy = game.createGameItem("enemy", 25);
+      enemy.x = x;
+      enemy.y = groundY - y;
+      enemy.velocityX = -speed;
+      game.addGameItem(enemy);
       var enemyImage = draw.bitmap("img/space-invaders-red.jpg");
       enemyImage.regX = enemyImage.image.width / 2;
       enemyImage.regY = enemyImage.image.height / 2;
       enemyImage.x=0;
       enemyImage.y=0;
       enemyImage.scaleX=enemyImage.scaleY=50/enemyImage.image.height;
-      var enemy = game.createGameItem("enemy", 25);
       enemy.addChild(enemyImage);
-      enemy.x = x;
-      enemy.y = groundY - y;
-      enemy.velocityX = -speed;
-      game.addGameItem(enemy);
       enemy.onPlayerCollision = function () {
-        game.changeIntegrity(-10);
+        game.changeIntegrity(-damage);
       };
       enemy.onProjectileCollision = function () {
-        game.increaseScore(100*level.number);
+        game.increaseScore(score);
         enemy.fadeOut();
       };
     }
@@ -65,18 +65,18 @@ var runLevels = function (window) {
 
     // all code from TODO 11 and 12
     function createReward(x,y,speed){
+      var reward=game.createGameItem("enemy",25)
+      reward.x = x;
+      reward.y = groundY - y;
+      reward.velocityX = -speed;
+      game.addGameItem(reward);
       var rewardImage=draw.bitmap("img/malwarebytes-logo.png")
       rewardImage.regX = rewardImage.image.width / 2;
       rewardImage.regY = rewardImage.image.height / 2;
       rewardImage.x=0;
       rewardImage.y=0;
-      var reward=game.createGameItem("enemy",25)
       rewardImage.scaleX=rewardImage.scaleY=50/rewardImage.image.height;
       reward.addChild(rewardImage);
-      reward.x = x;
-      reward.y = groundY - y;
-      reward.velocityX = -speed;
-      game.addGameItem(reward);
       reward.onPlayerCollision = function () {
         game.changeIntegrity(50)
         reward.shrink();
@@ -93,8 +93,8 @@ var runLevels = function (window) {
       markerImage.regY = markerImage.image.height / 2;
       markerImage.x=0;
       markerImage.y=0;
-      var marker=game.createGameItem("enemy",50)
       markerImage.scaleX=markerImage.scaleY=100/markerImage.image.height;
+      var marker=game.createGameItem("enemy",50)
       marker.addChild(markerImage);
       marker.x = x;
       marker.y = groundY - y;
@@ -114,10 +114,10 @@ var runLevels = function (window) {
       var levelObjects=level.gameItems
       for (i=0;i<levelObjects.length;i++){
         if (levelObjects[i].type==="sawblade"){
-          createSawblade(levelObjects[i].x,levelObjects[i].y,level.speed)
+          createSawblade(levelObjects[i].x,levelObjects[i].y,level.speed,10*level.number)
         }
         if (levelObjects[i].type==="enemy"){
-          createEnemy(levelObjects[i].x,levelObjects[i].y,level.speed)
+          createEnemy(levelObjects[i].x,levelObjects[i].y,level.speed,10*level.number,100*level.number)
         }
         if (levelObjects[i].type==="reward"){
           createReward(levelObjects[i].x,levelObjects[i].y,level.speed)
