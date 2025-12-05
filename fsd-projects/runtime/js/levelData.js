@@ -26,7 +26,7 @@ var makeLevelData = function (window) {
       {
         name: "Robot Rampage",
         number: 2,
-        speed: 6,
+        speed: 4,
         gameItems: [
           { type: "sawblade", x: 400, y: 0 },
           { type: "sawblade", x: 700, y: 0 },
@@ -39,7 +39,7 @@ var makeLevelData = function (window) {
       {
         name: "Robot Stomp",
         number: 3,
-        speed: 12,
+        speed: 5,
         gameItems: [
           { type: "sawblade", x: 400, y: 0 },
           { type: "sawblade", x: 800, y: 0 },
